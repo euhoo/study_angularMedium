@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { environment } from '../environments/environment';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
+    HttpClientModule,
     StoreModule.forRoot({}), // регистрация ngrx store и редьюсеров (аргументы функции)
     /* регистрация redux dev tools */
     StoreDevtoolsModule.instrument({
@@ -21,7 +23,6 @@ import { environment } from '../environments/environment';
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

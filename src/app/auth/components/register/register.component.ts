@@ -4,6 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { registerAction } from '../../store/actions/register.action';
 import { Observable } from 'rxjs';
 import { isSubmittingSelector } from '../../store/selectors';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'mc-register', // mc - префикс для того, чтобы понимать, что это наш,а не сторонний компонент
@@ -15,7 +16,11 @@ export class RegisterComponent implements OnInit {
   isSubmitting$: Observable<boolean>;
   isSubmitDisabled: boolean;
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+    private authService: AuthService
+  ) {}
   ngOnInit(): void {
     this.initForm();
     this.initValues();
@@ -36,6 +41,8 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit(): void {
     this.store.dispatch(registerAction(this.form.value));
-    console.log(this.store);
+    this.authService.register(this.form.value).subscribe((currentUser) => {
+      console.log(currentUser);
+    });
   }
 }

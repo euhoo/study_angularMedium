@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { reducers } from './store/reducers';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthService } from './services/auth.service';
 
 const routes: Routes = [{ path: 'register', component: RegisterComponent }];
 
@@ -17,5 +18,6 @@ const routes: Routes = [{ path: 'register', component: RegisterComponent }];
     StoreModule.forFeature('auth', reducers), // подключение редьюсеров с именем поля(auth) объекта
   ],
   declarations: [RegisterComponent],
+  providers: [AuthService],
 })
 export class AuthModule {}
