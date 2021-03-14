@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import {
-  registerAction,
-  registerFailureAction,
-  registerSuccessAction,
-} from '../actions/register.action';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
 import { CurrentUserInterface } from '../../../shared/types/currentUser.interface';
@@ -12,24 +7,29 @@ import { of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PersistanceService } from '../../../shared/services/persistance.service';
 import { Router } from '@angular/router';
+import {
+  loginAction,
+  loginFailureAction,
+  loginSuccesAction,
+} from '../actions/login.action';
 
 @Injectable()
-export class RegisterEffect {
+export class LoginEffect {
   register$ = createEffect(() =>
     this.actions$.pipe(
       // подписка на поток всех actions в приложении
-      ofType(registerAction), // оставляем только типа registerAction
+      ofType(loginAction), // оставляем только типа registerAction
       switchMap(({ request }) =>
         // запускаем новый стрим
-        this.authService.register(request).pipe(
+        this.authService.login(request).pipe(
           // подписка на новый стрим, который вернет функция authService.register
           map((currentUser: CurrentUserInterface) => {
             this.persistanceService.set('accessToken', currentUser.token);
-            return registerSuccessAction({ currentUser }); // если все хорошо - диспатчить success action
+            return loginSuccesAction({ currentUser }); // если все хорошо - диспатчить success action
           }),
           // если упали - диспатчить failure action
           catchError((errResponse: HttpErrorResponse) =>
-            of(registerFailureAction({ errors: errResponse.error.errors }))
+            of(loginFailureAction({ errors: errResponse.error.errors }))
           )
         )
       )
@@ -38,7 +38,7 @@ export class RegisterEffect {
   redirectAfterSubmit$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(registerSuccessAction),
+        ofType(loginSuccesAction),
         tap(() => {
           this.router.navigateByUrl('/'); // редирект при успешной регистрации
         })
