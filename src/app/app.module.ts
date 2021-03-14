@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { environment } from '../environments/environment';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     AuthModule,
     HttpClientModule,
     StoreModule.forRoot({}), // регистрация ngrx store и редьюсеров (аргументы функции)
+    EffectsModule.forRoot([]), // регистрация ngrx effects (аргументы функции)
     /* регистрация redux dev tools */
     StoreDevtoolsModule.instrument({
       maxAge: 25, // количество action, который хотим видеть
