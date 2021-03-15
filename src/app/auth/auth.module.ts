@@ -13,6 +13,7 @@ import { BackendErrorMessagesModule } from '../shared/modules/backendErrorMessag
 import { PersistanceService } from '../shared/services/persistance.service';
 import { LoginEffect } from './store/effects/login.effect';
 import { LoginComponent } from './components/login/login.component';
+import { CurrentUserEffect } from './store/effects/getCurrentUser.effect';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -25,7 +26,7 @@ const routes: Routes = [
     RouterModule.forChild(routes), // регистрация маршрутов в этом модуле
     ReactiveFormsModule,
     StoreModule.forFeature('auth', reducers), // подключение редьюсеров с именем поля(auth) объекта
-    EffectsModule.forFeature([RegisterEffect, LoginEffect]), // подключение эффектов
+    EffectsModule.forFeature([RegisterEffect, LoginEffect, CurrentUserEffect]), // подключение эффектов
     BackendErrorMessagesModule,
   ],
   declarations: [RegisterComponent, LoginComponent],

@@ -15,7 +15,7 @@ import {
 
 @Injectable()
 export class LoginEffect {
-  register$ = createEffect(() =>
+  login$ = createEffect(() =>
     this.actions$.pipe(
       // подписка на поток всех actions в приложении
       ofType(loginAction), // оставляем только типа registerAction
