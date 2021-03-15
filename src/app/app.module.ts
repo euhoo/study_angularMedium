@@ -7,8 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { environment } from '../environments/environment';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
+import { TopBarModule } from './shared/modules/topBar/topBar.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { EffectsModule } from '@ngrx/effects';
       maxAge: 25, // количество action, который хотим видеть
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    TopBarModule,
   ],
   bootstrap: [AppComponent],
 })

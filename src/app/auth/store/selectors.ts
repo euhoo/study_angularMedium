@@ -16,3 +16,17 @@ export const validationErrorsSelector = createSelector(
   authFeatureSelector,
   (authState) => authState.validationErrors
 );
+
+export const isLoggedInSelector = createSelector(
+  authFeatureSelector,
+  (authState) => authState.isLoggedIn
+);
+export const isAnonymousSelector = createSelector(
+  authFeatureSelector,
+  (authState) => authState.isLoggedIn === false
+);
+
+export const currentUserSelector = createSelector(
+  authFeatureSelector,
+  (authState) => authState.currentUser
+);
