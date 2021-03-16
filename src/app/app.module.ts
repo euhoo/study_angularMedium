@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { TopBarModule } from './shared/modules/topBar/topBar.module';
 import { PersistanceService } from './shared/services/persistance.service';
 import { AuthinterceptorService } from './shared/services/authinterceptor.service';
+import { GlobalFeedModule } from './globalFeed/globalFeed.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,7 @@ import { AuthinterceptorService } from './shared/services/authinterceptor.servic
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
     TopBarModule,
+    GlobalFeedModule,
   ],
   bootstrap: [AppComponent],
   providers: [
