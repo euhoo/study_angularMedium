@@ -13,6 +13,7 @@ import { TopBarModule } from './shared/modules/topBar/topBar.module';
 import { PersistanceService } from './shared/services/persistance.service';
 import { AuthinterceptorService } from './shared/services/authinterceptor.service';
 import { GlobalFeedModule } from './globalFeed/globalFeed.module';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,13 +22,14 @@ import { GlobalFeedModule } from './globalFeed/globalFeed.module';
     AppRoutingModule,
     AuthModule,
     HttpClientModule,
-    StoreModule.forRoot({}), // регистрация ngrx store и редьюсеров (аргументы функции)
+    StoreModule.forRoot({ router: routerReducer }), // регистрация ngrx store и редьюсеров (аргументы функции)
     EffectsModule.forRoot([]), // регистрация ngrx effects (аргументы функции)
     /* регистрация redux dev tools */
     StoreDevtoolsModule.instrument({
       maxAge: 25, // количество action, который хотим видеть
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    StoreRouterConnectingModule.forRoot(),
     TopBarModule,
     GlobalFeedModule,
   ],
