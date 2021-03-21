@@ -18,6 +18,7 @@ import { YourFeedModule } from './yourFeed/yourFeed.module';
 import { TagFeedModule } from './tagFeed/tagFeed.module';
 import { ArticleModule } from './article/article.module';
 import { CreateArticleModule } from './createArticle/createArticle.module';
+import { EditArticleModule } from './editArticle/editArticle.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +39,7 @@ import { CreateArticleModule } from './createArticle/createArticle.module';
     GlobalFeedModule,
     YourFeedModule,
     TagFeedModule,
+    EditArticleModule,
     CreateArticleModule, // выше ArticleModule чтобы правильно отработал route article/new
     ArticleModule,
   ],
