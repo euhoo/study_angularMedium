@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { ArticleService as SharedArticleService } from '../../../shared/services/article.service';
+import { SharedArticleService } from '../../../shared/services/article.service';
 import {
   getArticleAction,
   getArticleFailureAction,
